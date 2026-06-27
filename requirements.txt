@@ -1,0 +1,22 @@
+# Web framework
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+
+# Validation
+pydantic==2.9.2
+
+# ML and Data
+# ML & Data
+numpy==2.1.1
+pandas==2.2.3
+scikit-learn==1.5.2
+imbalanced-learn==0.12.4
+joblib==1.4.2
+matplotlib==3.9.2
+seaborn==0.13.2
+scipy==1.14.1
+ipython==8.28.0
+
+# Testing
+pytest==8.3.3
+httpx==0.27.2

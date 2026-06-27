@@ -1,0 +1,5 @@
+timestamp,event_type,model,visit_id,prediction,confidence,detail,logged_by
+2026-06-27T16:48:49.891038,validation,,,,,Data validation completed,phase6_utils
+2026-06-27T16:48:49.891283,feature_drift,,,,,Feature drift analysis completed,phase6_utils
+2026-06-27T16:48:49.891431,prediction_drift,,,,,Prediction drift analysis completed,phase6_utils
+2026-06-27T16:48:49.891562,governance,,,,,Governance review completed,phase6_utils

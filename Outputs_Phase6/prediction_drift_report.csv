@@ -1,0 +1,4 @@
+Class,Baseline (%),New (%),Shift (%),Alert
+Low,49.61,49.42,-0.2,False
+Medium,29.92,29.51,-0.42,False
+High,20.46,21.08,0.61,False

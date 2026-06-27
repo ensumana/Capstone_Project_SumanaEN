@@ -1,0 +1,39 @@
+{
+    "missing_values": {
+        "visit_id": 0,
+        "patient_id": 0,
+        "visit_date": 0,
+        "department": 0,
+        "visit_type": 0,
+        "length_of_stay_hours": 0,
+        "risk_score": 0,
+        "doctor_id": 0,
+        "age": 0,
+        "gender": 0,
+        "city": 0,
+        "insurance_provider": 0,
+        "chronic_flag": 0,
+        "registration_date": 0,
+        "bill_id": 0,
+        "billed_amount": 0,
+        "approved_amount": 1318,
+        "claim_status": 0,
+        "payment_days": 790,
+        "billing_date": 0
+    },
+    "range_violations": {
+        "age": 0,
+        "chronic_flag": 0,
+        "length_of_stay_hours": 0,
+        "payment_days": 0
+    },
+    "unseen_categories": {
+        "department": [],
+        "visit_type": [],
+        "gender": [],
+        "city": [],
+        "insurance_provider": [],
+        "risk_score": [],
+        "claim_status": []
+    }
+}

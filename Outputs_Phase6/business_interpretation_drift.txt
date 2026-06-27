@@ -1,0 +1,15 @@
+
+FEATURE DRIFT INTERPRETATION
+
+PSI < 0.10
+→ Feature distribution is stable.
+
+0.10 ≤ PSI < 0.25
+→ Moderate drift detected.
+
+PSI ≥ 0.25
+→ Significant drift detected.
+
+Recommendation:
+Features showing significant drift should trigger model review
+and possible retraining.

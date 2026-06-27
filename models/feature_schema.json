@@ -1,0 +1,133 @@
+{
+  "schema_version": "1.0",
+  "created_by": "Phase3_Modeling.ipynb",
+  "model_a_risk_classification": {
+    "description": "Classifies hospital visits as Low / Medium / High operational risk",
+    "target": "risk_score",
+    "classes": [
+      "Low",
+      "Medium",
+      "High"
+    ],
+    "best_model": "RandomForest",
+    "model_file": "models/model_a_rf.joblib",
+    "train_cutoff_date": "2025-11-08",
+    "train_rows": 20000,
+    "test_rows": 5000,
+    "features": [
+      "age",
+      "chronic_flag",
+      "length_of_stay_hours",
+      "patient_visit_frequency",
+      "avg_los_per_patient",
+      "days_since_registration",
+      "visit_month",
+      "visit_day_of_week",
+      "department_enc",
+      "visit_type_enc",
+      "gender_enc",
+      "city_enc"
+    ],
+    "numeric_features": [
+      "age",
+      "chronic_flag",
+      "length_of_stay_hours",
+      "patient_visit_frequency",
+      "avg_los_per_patient",
+      "days_since_registration",
+      "visit_month",
+      "visit_day_of_week"
+    ],
+    "categorical_encoded": [
+      "department_enc",
+      "visit_type_enc",
+      "gender_enc",
+      "city_enc"
+    ],
+    "imbalance_strategy": "class_weight=balanced",
+    "test_accuracy": 0.3904,
+    "test_macro_f1": 0.3425
+  },
+  "model_b_claim_classification": {
+    "description": "Predicts insurance claim outcome: Paid / Pending / Rejected",
+    "target": "claim_status",
+    "classes": [
+      "Paid",
+      "Pending",
+      "Rejected"
+    ],
+    "best_model": "RandomForest_SMOTE",
+    "model_file": "models/model_b_rf.joblib",
+    "train_cutoff_date": "2025-11-08",
+    "train_rows": 35835,
+    "test_rows": 5000,
+    "features": [
+      "billed_amount",
+      "approved_amount",
+      "approval_ratio",
+      "length_of_stay_hours",
+      "age",
+      "chronic_flag",
+      "patient_visit_frequency",
+      "days_since_registration",
+      "visit_month",
+      "department_enc",
+      "visit_type_enc",
+      "insurance_provider_enc",
+      "gender_enc"
+    ],
+    "numeric_features": [
+      "billed_amount",
+      "approved_amount",
+      "approval_ratio",
+      "length_of_stay_hours",
+      "age",
+      "chronic_flag",
+      "patient_visit_frequency",
+      "days_since_registration",
+      "visit_month"
+    ],
+    "categorical_encoded": [
+      "department_enc",
+      "visit_type_enc",
+      "insurance_provider_enc",
+      "gender_enc"
+    ],
+    "imbalance_strategy": "SMOTE (k_neighbors=5)",
+    "test_accuracy": 0.9546,
+    "test_macro_f1": 0.9373
+  },
+  "label_encodings": {
+    "department": [
+      "Cardiology",
+      "ER",
+      "General",
+      "ICU",
+      "Neurology",
+      "Orthopedics"
+    ],
+    "visit_type": [
+      "ER",
+      "ICU",
+      "OPD"
+    ],
+    "gender": [
+      "F",
+      "M"
+    ],
+    "city": [
+      "Bangalore",
+      "Chennai",
+      "Delhi",
+      "Hyderabad",
+      "Mumbai",
+      "Pune"
+    ],
+    "insurance_provider": [
+      "CareOne",
+      "HealthPlus",
+      "MediCareX",
+      "SecureLife"
+    ]
+  }
+}

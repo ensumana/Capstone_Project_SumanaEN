@@ -1,0 +1,81 @@
+
+HOSPITAL RISK INTELLIGENCE PLATFORM
+PHASE 6 — GOVERNANCE AND COMPLIANCE DOCUMENT
+
+1. SYSTEM PURPOSE
+The system predicts:
+- Patient Visit Risk (Low/Medium/High)
+- Insurance Claim Outcome (Paid/Pending/Rejected)
+
+Predictions are intended to support hospital operations and finance teams.
+
+------------------------------------------------------------
+
+2. MODEL ASSUMPTIONS
+
+- Models are trained on historical hospital data.
+- Data distributions remain relatively stable over time.
+- Categorical values must match predefined vocabularies.
+- Predictions are advisory and do not replace expert judgement.
+
+------------------------------------------------------------
+
+3. MODEL LIMITATIONS
+
+- Performance may degrade if patient demographics change.
+- New insurance providers or departments may introduce unseen categories.
+- Extreme operational events (pandemics, disasters) are not represented.
+- Historical biases present in training data may affect predictions.
+
+------------------------------------------------------------
+
+4. HUMAN OVERSIGHT
+
+Clinical and finance teams must review predictions before taking action.
+
+The AI system should never make fully autonomous decisions.
+
+------------------------------------------------------------
+
+5. MONITORING REQUIREMENTS
+
+- Daily data quality checks.
+- Weekly drift monitoring.
+- Monthly performance review.
+- Audit logging for all predictions.
+
+------------------------------------------------------------
+
+6. RETRAINING POLICY
+
+Models should be retrained when:
+
+- Significant feature drift is detected (PSI > 0.25).
+- Model performance degrades substantially.
+- New operational policies are introduced.
+- Every six months as preventive maintenance.
+
+------------------------------------------------------------
+
+7. AUDITABILITY
+
+Every prediction is logged with:
+- Timestamp
+- Model version
+- Endpoint used
+- Input hash
+- Predicted class
+- Probability scores
+
+------------------------------------------------------------
+
+8. COMPLIANCE
+
+Patient identifiers should be protected.
+Prediction logs must be securely stored.
+Access to models and logs should be restricted.
+
+------------------------------------------------------------
+
+Document Version : 1.0
+Model Version    : 1.0.0

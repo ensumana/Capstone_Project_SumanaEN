@@ -1,0 +1,85 @@
+# Hospital Risk Intelligence API - Deployment Guide
+
+## Prerequisites
+
+* Python 3.10+
+* Docker Desktop
+* Windows/Linux/macOS
+
+---
+
+## Local Deployment
+
+### Step 1: Clone Project
+
+```bash
+git clone <repository_url>
+cd Capstone_Project
+```
+
+### Step 2: Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Step 3: Run API
+
+```bash
+uvicorn Phase5_APIIntegration.main:app --reload
+```
+
+### Step 4: Access API
+
+Home Page:
+
+http://localhost:8000
+
+Swagger Documentation:
+
+http://localhost:8000/docs
+
+---
+
+## Docker Deployment
+
+### Build Docker Image
+
+```bash
+docker build -t hospital-risk-api:1.0.0 .
+```
+
+### Run Docker Container
+
+```bash
+docker run -d --name hospital-api -p 8000:8000 hospital-risk-api:1.0.0
+```
+
+### Verify Running Container
+
+```bash
+docker ps
+```
+
+Expected:
+
+Container status should be:
+
+Up (healthy)
+
+---
+
+## Health Check
+
+```bash
+GET /health
+```
+
+Expected Response:
+
+```json
+{
+    "status":"healthy",
+    "model_version":"1.0.0"
+}
+```

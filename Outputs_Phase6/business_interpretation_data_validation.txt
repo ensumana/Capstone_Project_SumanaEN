@@ -1,0 +1,10 @@
+
+PHASE 6 — DATA QUALITY MONITORING
+
+Business Interpretation:
+
+1. Missing values indicate potential data capture issues.
+2. Range violations indicate erroneous operational entries.
+3. Unseen categories may cause prediction failures in production.
+4. Continuous monitoring ensures reliable AI deployment.
+5. Data validation protects the hospital system from invalid requests.

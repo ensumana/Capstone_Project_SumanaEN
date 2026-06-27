@@ -1,0 +1,89 @@
+{
+  "model_card_version": "1.0",
+  "created_by": "Phase4_Evaluation.ipynb",
+  "project": "Hospital Operations & Revenue Risk Intelligence Platform",
+  "model_a": {
+    "name": "Visit Risk Classifier",
+    "version": "1.0",
+    "algorithm": "Random Forest (100 trees, max_depth=10)",
+    "task": "3-class classification: Low / Medium / High visit risk",
+    "target_variable": "risk_score",
+    "intended_use": "Support clinical staff in proactively prioritising High-Risk visits for resource allocation",
+    "training_period": "Earliest 80% of visits by date",
+    "train_cutoff": "2025-11-08",
+    "training_size": 20000,
+    "test_size": 5000,
+    "imbalance_strategy": "class_weight='balanced'",
+    "performance": {
+      "test_accuracy": "0.3904",
+      "test_macro_f1": "0.3425",
+      "recall_high_risk": "0.1632",
+      "train_accuracy": "0.7004",
+      "overfitting_gap": "0.3100"
+    },
+    "top_features": [
+      "length_of_stay_hours",
+      "avg_los_per_patient",
+      "days_since_registration",
+      "age"
+    ],
+    "fairness": {
+      "gender_disparity": "<0.01 F1 gap between Female and Male \u2014 acceptable",
+      "city_disparity": "Hyderabad shows slightly lower F1 \u2014 monitor post-deployment",
+      "insurance_disparity": "HealthPlus slightly lower \u2014 monitor post-deployment"
+    },
+    "known_limitations": [
+      "Significant overfitting: train accuracy 70.9% vs test accuracy 41.1% \u2014 model has memorised training patterns",
+      "Low recall for 'High' risk class (11.6%) \u2014 model misses many High-Risk visits",
+      "risk_score in source data has inherent variability not fully explained by available features",
+      "Improvement path: add clinical features (diagnosis codes, vitals), tune max_depth, or use XGBoost"
+    ],
+    "assumptions": [
+      "Patient registration date is available at time of visit",
+      "Department and visit_type are known at admission",
+      "Patient historical visit frequency is available in real time"
+    ],
+    "retraining_strategy": "Retrain monthly with rolling 12-month window; trigger immediate retraining if test F1 drops below 0.28"
+  },
+  "model_b": {
+    "name": "Claim Outcome Classifier",
+    "version": "1.0",
+    "algorithm": "Random Forest (100 trees, max_depth=12) + SMOTE oversampling",
+    "task": "3-class classification: Paid / Pending / Rejected claim outcome",
+    "target_variable": "claim_status",
+    "intended_use": "Predict claim rejection risk before submission, enabling finance teams to fix claims proactively",
+    "training_period": "Earliest 80% of billing records by date",
+    "train_cutoff": "2025-11-08",
+    "training_size": 35835,
+    "test_size": 5000,
+    "imbalance_strategy": "SMOTE oversampling (k_neighbors=5) to balance 3 classes before training",
+    "performance": {
+      "test_accuracy": "0.9546",
+      "test_macro_f1": "0.9373",
+      "recall_rejected": "0.9918",
+      "train_accuracy": "0.9646",
+      "overfitting_gap": "0.0100"
+    },
+    "top_features": [
+      "approval_ratio",
+      "approved_amount",
+      "billed_amount",
+      "visit_type_enc"
+    ],
+    "fairness": {
+      "insurance_disparity": "All providers within 0.016 F1 of each other \u2014 no significant disparity"
+    },
+    "known_limitations": [
+      "FEATURE LEAKAGE RISK: approval_ratio and approved_amount may not be available before claim submission",
+      "Production deployment must replace these with historical averages per provider/department",
+      "Without leaky features: accuracy drops to ~60% \u2014 still useful but significantly weaker",
+      "SMOTE creates synthetic samples \u2014 model may be overconfident on minority classes"
+    ],
+    "assumptions": [
+      "Historical approval ratios by provider and department are available as lookup tables",
+      "Billing amounts are determined before claim submission",
+      "Insurance provider is known at time of visit"
+    ],
+    "retraining_strategy": "Retrain quarterly; trigger retraining if recall for Rejected drops below 0.85 or if a new insurance provider is onboarded"
+  }
+}

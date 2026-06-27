@@ -1,0 +1,9 @@
+Feature,PSI,Status
+age,0.0022,Stable
+los_capped,0.0021,Stable
+visit_frequency,0.0004,Stable
+avg_los_per_patient,0.001,Stable
+days_since_registration,1.2599,Significant Drift
+billed_amount_capped,0.0027,Stable
+approval_ratio,0.0005,Stable
+payment_days_capped,0.0014,Stable
